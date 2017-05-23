@@ -17,3 +17,15 @@ AngularJS - Frontend framework
 ```
 <script src="/node_modules/angular/angular.js"></script>
 ```
+
+### gulp
+<!-- Starts server -->
+
+```
+gulp connect
+```
+
+### Browserify
+
+"bundle": "watchify -t [ babelify --presets [react es2015 ] ] public/js/script.js -o public/js/bundle.js -d"
+npm run bundle

@@ -1,19 +1,10 @@
 'use strict'
 
-import angular from 'angular';
-// import uiRouter from 'angular-ui-router';
-// import Components from './components/components';
-import AppComponent from './app.component';
-import 'normalize.css';
+import appComponent from './app.component';
+import navBar from './components/navbar/navbar';
 
 angular.module('app', [
-    // uiRouter,
-    // Components
-  ])
-  .config(($locationProvider) => {
-    "ngInject";
-    // @see: https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions
-    // #how-to-configure-your-server-to-work-with-html5mode
-    $locationProvider.html5Mode(true).hashPrefix('!');
-  })
-  .component('app', AppComponent);
+    // components
+    navBar
+])
+.component('app', appComponent);

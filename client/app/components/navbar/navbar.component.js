@@ -1,5 +1,5 @@
-import template from './app.html';
-import controller from './app.controller';
+import template from './navbar.html';
+import controller from './navbar.controller';
 
 let navbarComponent = {
     restrict: 'E',
@@ -11,4 +11,4 @@ let navbarComponent = {
     controllerAs: '$ctrl'
 };
 
-export default appComponent;
+export default navbarComponent;
