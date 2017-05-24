@@ -1,2 +1,5 @@
-# angular-email
-Building an email clone using angularjs
+angular
+gulp
+browserify
+watchify
+babelify
