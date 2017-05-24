@@ -1,1 +1,0 @@
-console.error("\n/Users/Elton/Bootcamp/angular-email/client/app/app.html:2\n<div class=\"app\">\n^\nParseError: Unexpected token");
