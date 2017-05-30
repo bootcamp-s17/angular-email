@@ -25,6 +25,7 @@ gulp.task('bundle', () => {
     .transform(babelify, {
         presets : [ 'es2015']
     })
+
     b.on('update', bundle);
     bundle()
 
