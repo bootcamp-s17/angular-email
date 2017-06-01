@@ -5848,19 +5848,6 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
-.tab-content {
-  border: 1px solid #ddd;
-  width: 20%; }
-  .tab-content a {
-    padding: 5px !important; }
-
-table {
-  border: 1px solid #ddd;
-  border-top: 0; }
-
-.tabActive, .viewed {
-  background-color: #eee; }
-
 .navbar {
   border: 1px solid #ddd; }
 
@@ -5874,4 +5861,18 @@ table {
 
 .visible-xs-block button {
   margin-top: 10px; }
+
+.tab-content {
+  border: 1px solid #ddd;
+  border-bottom: 5px solid #eee;
+  width: 20%; }
+  .tab-content a {
+    padding: 5px !important; }
+
+table {
+  border: 1px solid #ddd;
+  border-top: 0; }
+
+.tabActive, .viewed {
+  background-color: #eee; }
 

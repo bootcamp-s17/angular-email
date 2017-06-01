@@ -76,10 +76,9 @@ class mailListController {
     
     // Sets email to viewed
     emailViewed(email) {
-        console.log("fired")
         const ctrl = this;
         email.viewed = true;
-    }
+    };
 };
 
 export default mailListController;
