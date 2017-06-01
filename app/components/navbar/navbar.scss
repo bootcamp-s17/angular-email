@@ -1,0 +1,23 @@
+// Navbar
+.navbar {
+    border: 1px solid #ddd;
+}
+
+// Navigation Search Bar
+.navbar-form {
+    margin-left: 20px;
+    width: 50%;
+
+    .form-group {
+        width: 80%;
+
+        input {
+            width: 100%;
+        }
+    }
+}
+
+// Fix spacing for glyphicon on phone view
+.visible-xs-block button {
+    margin-top: 10px;
+}
