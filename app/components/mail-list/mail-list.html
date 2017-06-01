@@ -1,12 +1,56 @@
-<ul class="list-unstyled">
-    <li><a href=""></a>1</li>
-    <li><a href=""></a>2</li>
-    <li><a href=""></a>3</li>
-    <li><a href=""></a>4</li>
-    <li><a href=""></a>5</li>
-    <li><a href=""></a>6</li>
-    <li><a href=""></a>7</li>
-    <li><a href=""></a>8</li>
-    <li><a href=""></a>9</li>
-    <li><a href=""></a>10</li>
+<!-- Tabs without Angular -->
+<!--
+<ul class="nav nav-tabs hidden-xs">
+    <li class="tab-content"><a class="glyphicon glyphicon-inbox" href=""> Primary</a></li>
+    <li class="tab-content"><a class="glyphicon glyphicon-user" href=""> Social</a></li>
+    <li class="tab-content"><a class="glyphicon glyphicon-tags" href=""> Promotions</a></li>
+    <li class="tab-content"><a class="glyphicon glyphicon-info-sign" href=""> Updates</a></li>
+    <li class="tab-content"><a class="glyphicon glyphicon-comment"  href=""> Forums</a></li>
 </ul>
+-->
+
+<!-- Tabs with Angular -->
+<ul class="nav nav-tabs hidden-xs">
+    <li class="tab-content" ng-repeat="tab in $ctrl.tabs" ng-class="{tabActive: $ctrl.activeTab === tab.name}">
+        <a class="glyphicon {{tab.class}}" href="#" ng-click="$ctrl.updateTab(tab.name)"> {{tab.name}}</a>
+    </li>
+</ul>
+
+<!-- Mail List without Angular -->
+<!--
+<table class="table">
+    <tbody>
+        <tr>
+            <td>Name</td>
+            <td>Subject</td>
+            <td>Date</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>Subject</td>
+            <td>Date</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>Subject</td>
+            <td>Date</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>Subject</td>
+            <td>Date</td>
+        </tr>
+    </tbody>
+</table>
+-->
+
+<!-- Mail list with Angular-->
+<table class="table">
+    <tbody>
+        <tr ng-repeat="email in $ctrl.emails | filter: {tag: $ctrl.activeTab} | orderBy: '-date'" ng-click="$ctrl.emailViewed(email)" ng-class="{viewed: email.viewed}">
+            <td>{{email.name}}</td>
+            <td>{{email.subject}}</td>
+            <td>{{email.date}}</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,17 @@
+.tab-content {
+    border: 1px solid #ddd;
+    width: 20%;
+    a {
+        padding: 5px !important;
+    }
+}
+
+table {
+    border: 1px solid #ddd;
+    border-top: 0;
+}
+
+// On active tab and viewed email
+.tabActive, .viewed {
+    background-color: #eee;
+}

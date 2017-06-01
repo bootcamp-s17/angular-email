@@ -27,7 +27,7 @@ const autoprefixerOptions = {
 // watchify watches for file changes and rebundles
 gulp.task('bundle', () => {
     let b = browserify({
-        entries : ['app/app.js'],
+        entries : ['./app/app.js'],
         cache : {},
         packageCache : {},
         plugin : watchify
@@ -53,6 +53,7 @@ gulp.task('bundle', () => {
 });
 
 gulp.task('sass', () => {
+    console.log('Rebundling scss files...')
     return gulp.src('./app/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer(autoprefixerOptions))
@@ -65,4 +66,10 @@ gulp.task('connect', () => {
     connect.server();
 });
 
-gulp.task('default', ['connect', 'bundle', 'sass']);
+
+//Watch task
+gulp.task('css',function() {
+    gulp.watch('app/**/*.scss',['sass']);
+});
+
+gulp.task('default', ['connect', 'bundle', 'css']);
