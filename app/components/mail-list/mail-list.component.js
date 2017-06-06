@@ -4,7 +4,7 @@ import controller from './mail-list.controller';
 let mailListComponent = {
     bindings: {},
     template,
-    controller,
+    controller: ['$rootScope', '$interval', controller],
     controllerAs: '$ctrl'
 };
 

@@ -5848,20 +5848,6 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
-.navbar {
-  border: 1px solid #ddd; }
-
-.navbar-form {
-  margin-left: 20px;
-  width: 50%; }
-  .navbar-form .form-group {
-    width: 80%; }
-    .navbar-form .form-group input {
-      width: 100%; }
-
-.visible-xs-block button {
-  margin-top: 10px; }
-
 .tab-content {
   border: 1px solid #ddd;
   border-bottom: 5px solid #eee;
@@ -5875,4 +5861,40 @@ table {
 
 .tabActive, .viewed {
   background-color: #eee; }
+
+.glyphicon:before {
+  visibility: visible; }
+
+input[type=checkbox].glyphicon {
+  visibility: hidden; }
+
+.table tbody tr td {
+  width: 2px !important; }
+
+.border {
+  border: 1px solid #ddd; }
+
+.navbar-form {
+  margin-left: 20px;
+  width: 50%; }
+  .navbar-form .form-group {
+    width: 80%; }
+    .navbar-form .form-group input {
+      width: 100%; }
+
+.visible-xs-block button {
+  margin-top: 10px; }
+
+.border-bot {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px; }
+
+.second-nav {
+  padding: 10px 15px; }
+  .second-nav button {
+    width: 100%;
+    border: 1px solid #ddd;
+    background-color: #fff; }
+  .second-nav button:hover {
+    background-color: #ddd; }
 

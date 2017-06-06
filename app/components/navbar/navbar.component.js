@@ -4,7 +4,7 @@ import controller from './navbar.controller';
 let navbarComponent = {
     bindings: {},
     template,
-    controller,
+    controller: ['$rootScope', controller],
     controllerAs: '$ctrl'
 };
 

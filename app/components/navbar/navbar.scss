@@ -1,5 +1,5 @@
-// Navbar
-.navbar {
+// border
+.border {
     border: 1px solid #ddd;
 }
 
@@ -20,4 +20,23 @@
 // Fix spacing for glyphicon on phone view
 .visible-xs-block button {
     margin-top: 10px;
+}
+
+.border-bot {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.second-nav {
+    padding: 10px 15px;
+    
+    button {
+        width: 100%;
+        border: 1px solid #ddd;
+        background-color: #fff;
+    }
+    
+    button:hover {
+        background-color: #ddd;
+    }
 }

@@ -1,6 +1,15 @@
+import $ from 'jquery';
+
 class mailListController {
-    constructor() {
+    constructor($rootScope, $interval) {
         const ctrl = this;
+        ctrl.$rootScope = $rootScope;
+        ctrl.banana = 'banana';
+        
+        $rootScope.$watch('searchText', () => {
+            // watches for when the text box gets updated
+            ctrl.searchText = ctrl.$rootScope.searchText;
+        });
         
         // Mock data for tabs
         ctrl.tabs = [
@@ -31,39 +40,49 @@ class mailListController {
             {
                 name: 'Archer',
                 subject: 'Black Turtle Neck Sale',
-                date: '05/30/2017',
+                description: 'stuff and things',
+                date: '5/30/2017',
                 tag: ['Primary', 'Promotions'],
                 viewed: false
             },
             {
                 name: 'Lana',
                 subject: 'Save the whales',
-                date: '05/29/2017',
+                description: 'stuff and things',
+                date: '5/29/2017',
                 tag: ['Social', 'Forums'],
                 viewed: false
             },
             {
                 name: 'Figus',
                 subject: 'Taxes',
-                date: '05/25/2017',
+                description: 'stuff and things',
+                date: '5/25/2017',
                 tag: ['Promotions', 'Primary'],
                 viewed: false
             },
             {
                 name: 'Ray',
-                subject: 'Ski Trip' ,
-                date: '05/25/2017',
+                subject: 'Ski Trip',
+                description: 'stuff and things',
+                date: '5/25/2017',
                 tag: ['Updates', 'Forums', 'Social'],
                 viewed: false
             },
             {
                 name: 'Pam',
                 subject: 'Potluck',
-                date: '05/31/2017',
+                description: 'stuff and things',
+                date: '5/31/2017',
                 tag: ['Forums', 'Updates'],
                 viewed: false
             }
         ]
+        
+        // generates random emails
+        $interval(() => {
+            ctrl.randomEmail(ctrl.tabs)
+        }, 3000);
         
         ctrl.activeTab = 'Primary'
     };
@@ -78,6 +97,43 @@ class mailListController {
     emailViewed(email) {
         const ctrl = this;
         email.viewed = true;
+        ctrl.emailContent = email;
+    };
+    
+    // Create Email
+    randomEmail(tabs) {
+        const ctrl = this;
+        // pick random tab category
+        let category = tabs[Math.floor(Math.random()*tabs.length)].name;
+        
+        // Create a date
+        let date = new Date();
+        date = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+        
+        $.ajax({
+            url: 'http://hipsterjesus.com/api/',
+            dataType: 'json'
+        }).then((data) => {
+            let description = data.text;
+            // hits random user api to generate a random user
+            $.ajax({
+                url: 'https://randomuser.me/api/',
+                dataType: 'json',
+                success: (data) => {
+                    let res = data.results[0];
+                    let email = {
+                        name: `${res.name.first} ${res.name.last}`,
+                        email: res.email,
+                        subject: 'Hello World',
+                        description: description,
+                        date: date,
+                        viewed: false,
+                        tag: [category, category]
+                    }
+                    ctrl.emails.push(email);
+                }
+            }); 
+        })
     };
 };
 

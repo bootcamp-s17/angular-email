@@ -10,7 +10,7 @@
 -->
 
 <!-- Tabs with Angular -->
-<ul class="nav nav-tabs hidden-xs">
+<ul ng-hide="$ctrl.emailContent" class="nav nav-tabs hidden-xs">
     <li class="tab-content" ng-repeat="tab in $ctrl.tabs" ng-class="{tabActive: $ctrl.activeTab === tab.name}">
         <a class="glyphicon {{tab.class}}" href="#" ng-click="$ctrl.updateTab(tab.name)"> {{tab.name}}</a>
     </li>
@@ -36,11 +36,32 @@
 
 <!-- Mail list with Angular-->
 <table class="table">
-    <tbody>
-        <tr ng-repeat="email in $ctrl.emails | filter: {tag: $ctrl.activeTab} | orderBy: '-date'" ng-click="$ctrl.emailViewed(email)" ng-class="{viewed: email.viewed}">
+    <tbody ng-hide="$ctrl.emailContent">
+        <tr ng-repeat="email in $ctrl.emails | filter: {tag: $ctrl.activeTab} | filter: $ctrl.searchText | orderBy: '-date'" ng-click="$ctrl.emailViewed(email)" ng-class="{viewed: email.viewed}">
+            <td>
+                <input type="checkbox">
+            </td>
+            <td>
+                <input type="checkbox" class="glyphicon glyphicon-star-empty">
+            </td>
+            <td>
+                <input type="checkbox" ng-model="heart" class="glyphicon glyphicon-heart-empty">
+            </td>
             <td>{{email.name}}</td>
             <td>{{email.subject}}</td>
             <td>{{email.date}}</td>
+        </tr>
+    </tbody>
+    <tbody ng-show="$ctrl.emailContent">
+        <tr>
+            <td>
+                {{$ctrl.emailContent.subject}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{$ctrl.emailContent.description}}
+            </td>
         </tr>
     </tbody>
 </table>

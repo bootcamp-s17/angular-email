@@ -1,18 +1,20 @@
-<nav class="navbar">
+<nav class="border">
+    <!-- Desktop View -->
     <div class="container-fluid hidden-xs">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">{{$ctrl.title}}</a>
         </div>
-        <form class="navbar-form navbar-left">
+        <form ng-submit="$ctrl.search($ctrl.searchText)" class="navbar-form navbar-left">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
+                <input type="text" class="form-control" placeholder="Search" ng-model="$ctrl.searchText">
             </div>
             <button type="submit" class="btn btn-default">
                 <span class="glyphicon glyphicon-search"></span>
             </button>
         </form>
     </div>
-
+    
+    <!-- Mobile View -->
     <div class="container-fluid visible-xs-block">
         <button class="pull-left">
             <span class="glyphicon glyphicon-menu-hamburger"></span>
@@ -23,3 +25,15 @@
         </button>
     </div>
 </nav>
+
+<div class="container-fluid hidden-xs border-bot second-nav">
+    <div class="col-md-2">
+        {{$ctrl.title}}
+    </div>
+    <div class="col-md-1 border">
+        <input type="checkbox">
+    </div>
+    <div class="col-md-1">
+        <button class="glyphicon glyphicon-refresh"></button>
+    </div>
+</div>

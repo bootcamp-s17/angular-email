@@ -16,3 +16,19 @@ table {
 .tabActive, .viewed {
     background-color: #eee;
 }
+
+.glyphicon:before {
+    visibility: visible;
+}
+
+//.glyphicon.glyphicon-star-empty:checked:before {
+//   content: "\e006";
+//}
+
+input[type=checkbox].glyphicon{
+    visibility: hidden;
+}
+
+.table tbody tr td {
+    width: 2px !important;
+}

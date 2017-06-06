@@ -66,7 +66,6 @@ gulp.task('connect', () => {
     connect.server();
 });
 
-
 //Watch task
 gulp.task('css',function() {
     gulp.watch('app/**/*.scss',['sass']);
