@@ -6,9 +6,30 @@ class mailListController {
         ctrl.$rootScope = $rootScope;
         ctrl.banana = 'banana';
         
-        $rootScope.$watch('searchText', () => {
+        ctrl.$rootScope.$watch('searchText', () => {
             // watches for when the text box gets updated
             ctrl.searchText = ctrl.$rootScope.searchText;
+        });
+        
+        ctrl.$rootScope.$watch('filter', () => {
+            // watches for inbox type
+            switch(ctrl.$rootScope.filter) {
+                case 'starred':
+                    console.log('starred');
+                    break;
+                case 'important':
+                    console.log('important');
+                    break;
+            }
+            ctrl.filter = ctrl.$rootScope.filter;
+        });
+        
+        // return to mail list if inbox is clicked on sidebar component
+        ctrl.$rootScope.$watch('inboxClicked', () => {
+            ctrl.$rootScope.inboxClicked = false;
+            ctrl.emailContent = false;
+            ctrl.$rootScope.filter = false;
+            console.log('false');
         });
         
         // Mock data for tabs
@@ -43,7 +64,9 @@ class mailListController {
                 description: 'stuff and things',
                 date: '5/30/2017',
                 tag: ['Primary', 'Promotions'],
-                viewed: false
+                viewed: false,
+                important: false,
+                starred: false
             },
             {
                 name: 'Lana',
@@ -51,7 +74,9 @@ class mailListController {
                 description: 'stuff and things',
                 date: '5/29/2017',
                 tag: ['Social', 'Forums'],
-                viewed: false
+                viewed: false,
+                important: false,
+                starred: false
             },
             {
                 name: 'Figus',
@@ -59,7 +84,9 @@ class mailListController {
                 description: 'stuff and things',
                 date: '5/25/2017',
                 tag: ['Promotions', 'Primary'],
-                viewed: false
+                viewed: false,
+                important: false,
+                starred: false
             },
             {
                 name: 'Ray',
@@ -67,7 +94,9 @@ class mailListController {
                 description: 'stuff and things',
                 date: '5/25/2017',
                 tag: ['Updates', 'Forums', 'Social'],
-                viewed: false
+                viewed: false,
+                important: false,
+                starred: false
             },
             {
                 name: 'Pam',
@@ -75,7 +104,9 @@ class mailListController {
                 description: 'stuff and things',
                 date: '5/31/2017',
                 tag: ['Forums', 'Updates'],
-                viewed: false
+                viewed: false,
+                important: false,
+                starred: false
             }
         ]
         
@@ -85,6 +116,7 @@ class mailListController {
         }, 3000);
         
         ctrl.activeTab = 'Primary'
+        ctrl.countNewEmails();
     };
     
     // Updates tab clicked
@@ -98,6 +130,7 @@ class mailListController {
         const ctrl = this;
         email.viewed = true;
         ctrl.emailContent = email;
+        ctrl.countNewEmails();
     };
     
     // Create Email
@@ -128,13 +161,40 @@ class mailListController {
                         description: description,
                         date: date,
                         viewed: false,
-                        tag: [category, category]
+                        tag: [category, category],
+                        important: false,
+                        starred: false
                     }
                     ctrl.emails.push(email);
+                    ctrl.countNewEmails();
                 }
             }); 
         })
     };
+    
+    // counts the number of unread emails and displays next to
+    // sidebar inbox 
+    countNewEmails() {
+        const ctrl = this;
+        let count = 0;
+        ctrl.emails.map((email) => {
+            if (!email.viewed) {
+                count++;
+            }
+        });
+        
+        ctrl.$rootScope.inbox = count;
+    };
+    
+    // saves email to important
+    important(email) {
+        email.important = !email.important;
+    };
+    
+    // saves email to starred
+    starred(email) {
+        email.starred = !email.starred;
+    }
 };
 
 export default mailListController;

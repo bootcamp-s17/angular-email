@@ -1,51 +1,22 @@
-<!-- Tabs without Angular -->
-<!--
-<ul class="nav nav-tabs hidden-xs">
-    <li class="tab-content"><a class="glyphicon glyphicon-inbox" href=""> Primary</a></li>
-    <li class="tab-content"><a class="glyphicon glyphicon-user" href=""> Social</a></li>
-    <li class="tab-content"><a class="glyphicon glyphicon-tags" href=""> Promotions</a></li>
-    <li class="tab-content"><a class="glyphicon glyphicon-info-sign" href=""> Updates</a></li>
-    <li class="tab-content"><a class="glyphicon glyphicon-comment"  href=""> Forums</a></li>
-</ul>
--->
-
-<!-- Tabs with Angular -->
+<!-- Mail List Categories -->
 <ul ng-hide="$ctrl.emailContent" class="nav nav-tabs hidden-xs">
     <li class="tab-content" ng-repeat="tab in $ctrl.tabs" ng-class="{tabActive: $ctrl.activeTab === tab.name}">
         <a class="glyphicon {{tab.class}}" href="#" ng-click="$ctrl.updateTab(tab.name)"> {{tab.name}}</a>
     </li>
 </ul>
 
-<!-- Mail List without Angular -->
-<!--
-<table class="table">
-    <tbody>
-        <tr>
-            <td>Name</td>
-            <td>Subject</td>
-            <td>Date</td>
-        </tr>
-        <tr>
-            <td>Name</td>
-            <td>Subject</td>
-            <td>Date</td>
-        </tr>
-    </tbody>
-</table>
--->
-
-<!-- Mail list with Angular-->
+<!-- Email List -->
 <table class="table">
     <tbody ng-hide="$ctrl.emailContent">
-        <tr ng-repeat="email in $ctrl.emails | filter: {tag: $ctrl.activeTab} | filter: $ctrl.searchText | orderBy: '-date'" ng-click="$ctrl.emailViewed(email)" ng-class="{viewed: email.viewed}">
+        <tr ng-repeat="email in $ctrl.emails | filter: {tag: $ctrl.activeTab} | filter: $ctrl.searchText | orderBy: '-date'" ng-click="$ctrl.emailViewed(email)" ng-class="{viewed: email.viewed}" ng-if="($ctrl.filter === 'starred' && email.starred) || ($ctrl.filter === 'important' && email.important) || !$ctrl.filter">
             <td>
-                <input type="checkbox">
+                <input type="checkbox" ng-click="$event.stopPropagation();">
             </td>
             <td>
-                <input type="checkbox" class="glyphicon glyphicon-star-empty">
+                <input type="checkbox" class="glyphicon" ng-class="{'glyphicon-star': email.starred, 'glyphicon-star-empty': !email.starred}" ng-click="$ctrl.starred(email); $event.stopPropagation();">
             </td>
             <td>
-                <input type="checkbox" ng-model="heart" class="glyphicon glyphicon-heart-empty">
+                <input type="checkbox" class="glyphicon" ng-class="{'glyphicon-heart': email.important, 'glyphicon-heart-empty': !email.important}" ng-click="$ctrl.important(email); $event.stopPropagation();">
             </td>
             <td>{{email.name}}</td>
             <td>{{email.subject}}</td>

@@ -1,9 +1,9 @@
 <div class="container-fluid">
     <button class="button mb-10">Compose</button>
     <ul class="list-unstyled ">
-        <li><a href="">Inbox</a></li>
-        <li><a href="">Starred</a></li>
-        <li><a href="">Important</a></li>
+        <li><a disabled="disabled" ng-click="$ctrl.$rootScope.inboxClicked = true">Inbox {{$ctrl.unread}}</a></li>
+        <li><a disabled="disabled" ng-click="$ctrl.$rootScope.filter = 'starred'">Starred</a></li>
+        <li><a disabled="disabled" ng-click="$ctrl.$rootScope.filter = 'important'">Important</a></li>
         <li><a href="">Sent Mail</a></li>
         <li><a href="">Drafts</a></li>
         <li><a href="">Junk</a></li>

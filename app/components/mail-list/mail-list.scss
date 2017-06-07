@@ -21,9 +21,15 @@ table {
     visibility: visible;
 }
 
-//.glyphicon.glyphicon-star-empty:checked:before {
-//   content: "\e006";
-//}
+// favorite checkbox on mail-list
+.glyphicon-heart:before {
+    color: deeppink;
+}
+
+// starred checkbox on mail-list
+.glyphicon-star:before {
+    color: gold;
+}
 
 input[type=checkbox].glyphicon{
     visibility: hidden;
