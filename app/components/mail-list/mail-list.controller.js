@@ -4,7 +4,6 @@ class mailListController {
     constructor($rootScope, $interval) {
         const ctrl = this;
         ctrl.$rootScope = $rootScope;
-        ctrl.banana = 'banana';
         
         ctrl.$rootScope.$watch('searchText', () => {
             // watches for when the text box gets updated
